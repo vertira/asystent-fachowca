@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                String             @id @default(cuid())
+  image             String
+  name              String
+  email             String             @unique
+  password          String?
+  emailVerified     DateTime?
+  role              Role               @default(EMPLOYER)
+  permissions       Permissions?
+  employerId        String?
+  employer          User?              @relation("EmployeeToEmployer", fields: [employerId], references: [id])
+  employees         User[]             @relation("EmployeeToEmployer")
+  registrationCodes RegistrationCode[]
+  isPremium         Boolean            @default(false)
+  accounts          Account[]
+  sessions          Session[]
+  createdWorks      Work[]             @relation("CreatedWorks")
+  assignedWorks     Work[]             @relation("AssignedWorks")
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  Material          Material[]
+  sentMessages      Message[]          @relation("SentMessages")
+  ShoppingList      ShoppingList[]
+  WarehouseMaterial WorkMaterial[]
+}
+
+model Permissions {
+  id         String  @id @default(cuid())
+  user       User    @relation(fields: [userId], references: [id])
+  userId     String  @unique
+  calendar   Boolean @default(false)
+  warehouse  Boolean @default(false)
+  createWork Boolean @default(false)
+  editWork   Boolean @default(false)
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  content    String
+  createdAt  DateTime @default(now())
+  senderId   String
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  employerId String?
+}
+
+model RegistrationCode {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  createdBy String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  creator   User     @relation(fields: [createdBy], references: [id])
+}
+
+model Category {
+  id   String @id @default(cuid())
+  name String @unique
+  work Work[]
+}
+
+model Work {
+  id            String         @id @default(cuid())
+  name          String
+  slug          String         @unique
+  address       String
+  contact       String?
+  startDate     DateTime
+  endDate       DateTime
+  mapWork       String
+  images        Image[]
+  categories    Category[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  user          User           @relation("CreatedWorks", fields: [userId], references: [id])
+  assignedStaff User[]         @relation("AssignedWorks")
+  userId        String
+  status        Status         @default(ACTIVE)
+  Material      Material[]
+  ShoppingList  ShoppingList[]
+  warehouseList WorkMaterial[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Image {
+  id        String   @id @default(cuid())
+  workId    String
+  work      Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([workId])
+}
+
+model Material {
+  id                String         @id @default(uuid())
+  name              String
+  quantity          Int
+  unit              String
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  user              User           @relation(fields: [userId], references: [id])
+  userId            String
+  work              Work?          @relation(fields: [workId], references: [id])
+  workId            String?
+  warehouseMaterial WorkMaterial[]
+
+  @@index([userId])
+}
+
+model WorkMaterial {
+  id         String    @id @default(uuid())
+  name       String
+  quantity   Int
+  unit       String
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String
+  work       Work?     @relation(fields: [workId], references: [id])
+  workId     String?
+  Material   Material? @relation(fields: [materialId], references: [id])
+  materialId String?
+
+  @@index([userId])
+}
+
+model ShoppingList {
+  id        String   @id @default(uuid())
+  name      String
+  quantity  Int
+  unit      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  work      Work?    @relation(fields: [workId], references: [id])
+  workId    String?
+
+  @@index([userId])
+}
+
+enum Status {
+  ACTIVE
+  EXPIRED
+}
+
+enum Role {
+  EMPLOYER
+  STAFF
+}
