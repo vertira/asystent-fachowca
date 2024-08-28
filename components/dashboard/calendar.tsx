@@ -17,7 +17,7 @@ export function CalendarDashboard() {
 				setWorks(worksData);
 			} catch (error) {
 				console.error("Wystąpił błąd podczas ładowania danych:", error);
-				setIsLoading(false)
+				setIsLoading(false);
 			} finally {
 				setIsLoading(false);
 			}
