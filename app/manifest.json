@@ -1,12 +1,12 @@
 {
-	"theme_color": "#000000",
+	"theme_color": "transparent",
 	"background_color": "#000000",
 	"display": "standalone",
 	"scope": "/",
 	"start_url": "/",
 	"name": "Asystent Fachowca",
 	"short_name": "Asystent Fachowca",
-	"description": "Aplikacja do zarz\u0105dzania pracami",
+	"description": "Aplikacja do zarządzania pracami",
 	"icons": [
 		{
 			"src": "/icons/icon-192x192.png",

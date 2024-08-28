@@ -17,6 +17,11 @@
 ::-webkit-scrollbar-thumb:hover {
 	background: #fc9638;
 }
+@supports (padding-top: env(safe-area-inset-top)) {
+	.pt-safe {
+		padding-top: env(safe-area-inset-top);
+	}
+}
 @layer base {
 	:root {
 		--background: 0 0% 100%;
