@@ -18,7 +18,6 @@ function CalendarEditWork({
 	return (
 		<DayPicker
 			showOutsideDays={showOutsideDays}
-			disabled={{ daysOfWeek: [1, 6] }}
 			className={cn("p-3", className)}
 			classNames={{
 				months:
