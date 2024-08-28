@@ -33,6 +33,7 @@ const APP_TITLE_TEMPLATE = "%s - Asystent Fachowca";
 const APP_DESCRIPTION = "Aplikacja do zarządzania pracą";
 export const metadata: Metadata = {
 	applicationName: APP_NAME,
+	themeColor: "#000000",
 	title: {
 		default: APP_DEFAULT_TITLE,
 		template: APP_TITLE_TEMPLATE,
