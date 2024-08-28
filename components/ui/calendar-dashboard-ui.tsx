@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "./use-toast";
 
-type CalendarProps = React.ComponentProps<typeof DayPicker>;
+// type CalendarProps = React.ComponentProps<typeof DayPicker>;
 function CalendarDashboardUI({
 	className,
 	classNames,
@@ -16,7 +16,7 @@ function CalendarDashboardUI({
 	works,
 	isLoading,
 	...props
-}: CalendarProps) {
+}: any) {
 	const [bookedDays, setBookedDays] = React.useState([]);
 	const { toast } = useToast();
 	React.useEffect(() => {
