@@ -7,14 +7,13 @@ import { DayPicker } from "react-day-picker";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
-type CalendarProps = React.ComponentProps<typeof DayPicker>;
 function Calendar({
 	className,
 	classNames,
 	showOutsideDays = true,
 	works,
 	...props
-}: CalendarProps) {
+}: any) {
 	const [bookedDays, setBookedDays] = React.useState([]);
 	React.useEffect(() => {
 		const formattedDates = works.map((item: any) => {
