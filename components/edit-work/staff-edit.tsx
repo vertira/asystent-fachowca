@@ -34,11 +34,15 @@ export interface Employee {
 
 export default function StaffEdit({ work, user }: { work: any; user: any }) {
 	const router = useRouter();
-	const initialEmployees: Employee[] = user.employees.map((employe: any) => ({
+	const initialWorkers: Employee[] = user.employees.map((employe: any) => ({
 		id: employe.id,
 		name: employe.name,
 		avatar: employe.image,
 	}));
+	
+	const initialEmployees: Employee[] = user.role === "EMPLOYER" 
+		? [...initialWorkers, {id: user.id, name: user.name, avatar: user.image}] 
+		: initialWorkers;
 	const initialAssigned: Employee[] = work.assignedStaff.map(
 		(employe: any) => ({
 			id: employe.id,
@@ -160,7 +164,6 @@ export default function StaffEdit({ work, user }: { work: any; user: any }) {
 							<Button
 								variant="ghostsecond"
 								disabled={
-									assignedEmployees.length === 0 ||
 									JSON.stringify(assignedEmployees) ===
 										JSON.stringify(initialAssigned)
 								}
@@ -183,7 +186,7 @@ export default function StaffEdit({ work, user }: { work: any; user: any }) {
 								{isEdit && (
 									<EmployeeList employees={employees} id="employeeList" />
 								)}
-								<Dropbox employees={assignedEmployees} id="dropbox" />
+								<Dropbox employees={assignedEmployees} user={user} id="dropbox" />
 							</div>
 							<DragOverlay>
 								{activeEmployee ? (

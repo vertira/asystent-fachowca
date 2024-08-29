@@ -48,7 +48,7 @@ const ActiveWorks: React.FC<ActiveWorksProps> = async ({ activeWorks }) => {
 	});
 	return (
 		
-			<div className="w-full grid grid-cols-1 flex-1 gap-20 pt-4 pb-10  mx-auto md:w-3/4  md:pt-6 md:px-4">
+			<div className="w-full grid grid-cols-1 flex-1 gap-20  pb-10  mx-auto md:w-3/4  md:pt-6 md:px-4">
 				<BackgroundGradient className="flex flex-col items-center bg-cardBackground h-full px-4 rounded-xl w-full mx-auto max-w-4xl py-10">
 					<div className="w-full max-w-xl ">
 						<HeadingHomepage text="W trakcie prac" />

@@ -86,6 +86,7 @@ export const NewWorkSideBar = ({ works, authenticatedUser }: NewWorkProps) => {
 							: "inline-block",
 						opacity: animate ? (open ? 1 : 0) : 1,
 					}}
+					initial={false}
 					className="text-base group-hover/sidebar:translate-x-1 group-hover/sidebar:text-myText group-hover/sidebar:font-extrabold transition duration-150 whitespace-pre inline-block !p-0 !m-0"
 				>
 					Nowa praca
@@ -109,7 +110,7 @@ export const Logo = () => {
 	return (
 		<Link
 			href="/"
-			className="flex items-center justify-start gap-2 py-4 border-b "
+			className="flex items-center justify-start gap-2 py-4 border-b borderColor "
 		>
 			<Image
 				src="/icons/favicon.ico"
@@ -124,6 +125,7 @@ export const Logo = () => {
 					display: animate ? (open ? "inline-block" : "none") : "inline-block",
 					opacity: animate ? (open ? 1 : 0) : 1,
 				}}
+				initial={false}
 				className="text-lg font-extrabold whitespace-pre inline-block !p-0 !m-0"
 			>
 				Asystent Fachowca
@@ -150,6 +152,7 @@ export const Settings = () => {
 					display: animate ? (open ? "inline-block" : "none") : "inline-block",
 					opacity: animate ? (open ? 1 : 0) : 1,
 				}}
+				initial={false}
 				className="text-lg font-extrabold text-myText-muted group-hover/link:text-myText whitespace-pre inline-block group-hover/link:translate-x-1 transition duration-150 !p-0 !m-0"
 			>
 				Ustawienia
@@ -171,6 +174,7 @@ export const SignOut = () => {
 					display: animate ? (open ? "inline-block" : "none") : "inline-block",
 					opacity: animate ? (open ? 1 : 0) : 1,
 				}}
+				initial={false}
 				className="text-lg text-myText-muted group-hover/link:text-myText font-extrabold whitespace-pre inline-block group-hover/link:translate-x-1 transition duration-150 !p-0 !m-0"
 			>
 				Wyloguj się
@@ -194,7 +198,7 @@ export const AvatarSideBar = ({
 						width={48}
 						height={48}
 						alt="avatar logo fallback"
-						className="ml-4 h-7 w-7 flex-shrink-0 group-hover/link:text-first-muted"
+						className=" h-7 w-7 flex-shrink-0"
 					/>
 				</AvatarFallback>
 			</Avatar>
@@ -204,6 +208,7 @@ export const AvatarSideBar = ({
 					display: animate ? (open ? "inline-block" : "none") : "inline-block",
 					opacity: animate ? (open ? 1 : 0) : 1,
 				}}
+				initial={false}
 			>
 				<div className="flex flex-col">
 					<span className="text-base font-medium">

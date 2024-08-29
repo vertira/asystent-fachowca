@@ -83,7 +83,7 @@ const Dashboard: React.FC<Dashboard> = ({
 							: "Nie masz uprawnień aby wyświetlić ten element"}
 					</ul>
 				</div>
-				<div className="bg-cardBackground/50 h-[70vh] xl:h-[40vh] overflow-y-scroll col-span-2 rounded-lg  mb-10 relative">
+				<div className="bg-cardBackground/50 max-h-[70vh] xl:h-[40vh] overflow-y-scroll col-span-2 rounded-lg  mb-10 relative">
 					<ShopingList works={works} />
 				</div>
 			</div>

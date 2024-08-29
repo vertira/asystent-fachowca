@@ -23,7 +23,7 @@ export function SideBarMotion({
 	return (
 		<div
 			className={cn(
-				"flex flex-col-reverse md:flex-row  w-full flex-1 relative"
+				"flex flex-col-reverse md:flex-row w-full flex-1 relative"
 			)}
 		>
 			<Sidebar open={open} setOpen={setOpen}>
@@ -51,7 +51,7 @@ export function SideBarMotion({
 								works={works}
 							/>
 					</div>
-					<div className="border-t ">
+					<div className="border-t borderColor ">
 						<Settings />
 						<SignOut />
 					</div>

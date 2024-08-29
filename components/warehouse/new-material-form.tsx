@@ -53,6 +53,7 @@ export default function MaterialForm({
 				setVisible(false);
 			} else if (success.success === "SUCCES") {
 				toast({
+					variant: "success",
 					title: "Pomyślnie dodano!",
 					description: "Materiał został pomyślnie dodany.",
 				});

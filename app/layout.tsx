@@ -9,23 +9,23 @@ import { auth } from "@/auth";
 import AuthWrapper from "../lib/auth_wrapper";
 
 const telegram = localFont({
-  src: [
-    {
-      path: "./fonts/PPTelegraf-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/PPTelegraf-Ultrabold.otf",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "./fonts/PPTelegraf-Ultralight.otf",
-      weight: "200",
-      style: "normal",
-    },
-  ],
+	src: [
+		{
+			path: "./fonts/PPTelegraf-Regular.otf",
+			weight: "400",
+			style: "normal",
+		},
+		{
+			path: "./fonts/PPTelegraf-Ultrabold.otf",
+			weight: "800",
+			style: "normal",
+		},
+		{
+			path: "./fonts/PPTelegraf-Ultralight.otf",
+			weight: "200",
+			style: "normal",
+		},
+	],
 });
 
 const APP_NAME = "Asystent fachowca";
@@ -34,72 +34,73 @@ const APP_TITLE_TEMPLATE = "%s - Asystent Fachowca";
 const APP_DESCRIPTION = "Aplikacja do zarządzania pracą";
 
 export const metadata: Metadata = {
-  applicationName: APP_NAME,
-  themeColor: "transparent", // Zmienione na transparent
-  title: {
-    default: APP_DEFAULT_TITLE,
-    template: APP_TITLE_TEMPLATE,
-  },
-  description: APP_DESCRIPTION,
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent", // Zmienione na black-translucent
-    title: APP_DEFAULT_TITLE,
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    siteName: APP_NAME,
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
-    description: APP_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary",
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
-    description: APP_DESCRIPTION,
-  },
+	applicationName: APP_NAME,
+	title: {
+		default: APP_DEFAULT_TITLE,
+		template: APP_TITLE_TEMPLATE,
+	},
+	description: APP_DESCRIPTION,
+	appleWebApp: {
+		capable: true,
+		statusBarStyle: "black-translucent", // Zmienione na black-translucent
+		title: APP_DEFAULT_TITLE,
+	},
+	formatDetection: {
+		telephone: false,
+	},
+	openGraph: {
+		type: "website",
+		siteName: APP_NAME,
+		title: {
+			default: APP_DEFAULT_TITLE,
+			template: APP_TITLE_TEMPLATE,
+		},
+		description: APP_DESCRIPTION,
+	},
+	twitter: {
+		card: "summary",
+		title: {
+			default: APP_DEFAULT_TITLE,
+			template: APP_TITLE_TEMPLATE,
+		},
+		description: APP_DESCRIPTION,
+	},
 };
 
 export const viewport: Viewport = {
-  themeColor: "transparent", // Zmienione na transparent
-  viewportFit: "cover", // Dodane dla lepszego wsparcia iOS
+	themeColor: "#000000",
+	initialScale: 1,
+	maximumScale: 1,
+	userScalable: false,
 };
 
 const RootLayout = async ({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) => {
-  const authenticatedUser = await auth();
-  return (
-    <html suppressHydrationWarning={true} lang="pl">
-      <head />
-      <body
-        className={cn(
-          `${telegram.className} min-h-screen h-full flex flex-col text-myText bg-myBackground`,
-          {
-            "flex-col": authenticatedUser,
-          },
-          "pt-safe" // Dodane dla obsługi bezpiecznego obszaru na iOS
-        )}
-        style={{
-          paddingTop: "env(safe-area-inset-top)", // Dodane dla obsługi notcha na iOS
-        }}
-      >
-        <AuthWrapper>{children}</AuthWrapper>
-        <Toaster />
-        <Analytics />
-      </body>
-    </html>
-  );
+	const authenticatedUser = await auth();
+	return (
+		<html suppressHydrationWarning={true} lang="pl">
+			<head />
+			<body
+				className={cn(
+					`${telegram.className} min-h-screen h-full flex flex-col text-myText bg-myBackground`,
+					{
+						"flex-col": authenticatedUser,
+					},
+					"pt-safe" // Dodane dla obsługi bezpiecznego obszaru na iOS
+				)}
+				style={{
+					paddingTop: "env(safe-area-inset-top)", // Dodane dla obsługi notcha na iOS
+				}}
+			>
+				<AuthWrapper>{children}</AuthWrapper>
+				<Toaster />
+				<Analytics />
+			</body>
+		</html>
+	);
 };
 
 export default RootLayout;

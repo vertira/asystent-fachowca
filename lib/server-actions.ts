@@ -744,8 +744,12 @@ async function createMaterial(name: string, quantity: number, unit: string) {
 	if (!authenticatedUser) {
 		throw new Error("You must be signed in to create a work");
 	}
-
-	const userId = authenticatedUser.user?.id;
+	let userId;
+	if(authenticatedUser.user.role === "EMPLOYER"){
+		userId = authenticatedUser.user.id;
+	}else if(authenticatedUser.user.role === "STAFF"){
+		userId = authenticatedUser.user.employerId;
+	}
 	const material = await db.material.create({
 		data: {
 			name,

@@ -35,14 +35,14 @@ export function ShopingList({ works }: { works: any }) {
 			const materialsFromWarehouse = work.warehouseList;
 			const materialTable = [...materialsFromShop, ...materialsFromWarehouse];
 			return (
-				<>
+				<div className="h-full w-full">
 					<Card className="bg-cardBackground borderColor lg:col-span-2 flex items-center ">
 						<CardContent className="flex flex-col lg:flex-row items-center w-full justify-start gap-5 px-6 py-3">
 							<div className="flex flex-row w-full items-center justify-center gap-5">
 								<p className="text-first-muted  text-xl  font-semibold leading-none tracking-tight">
 									Pracownicy:
 								</p>
-								<div className="flex flex-wrap md:justify-between justify-center gap-5 w-full">
+								<div className="flex flex-wrap md:justify-between justify-start gap-5 w-full">
 									{work.assignedStaff.length > 0 ? (
 										work.assignedStaff?.map((employee: any) => (
 											<div
@@ -115,7 +115,7 @@ export function ShopingList({ works }: { works: any }) {
 							)}
 						</TableBody>
 					</Table>
-				</>
+					</div>
 			);
 		},
 	}));
@@ -156,7 +156,7 @@ export function ShopingList({ works }: { works: any }) {
 						<motion.div
 							layoutId={`card-${active.title}-${id}`}
 							ref={ref}
-							className="w-full max-w-[700px]  h-full md:h-fit md:max-h-[90%]  flex flex-col  bg-cardBackground sm:rounded-3xl overflow-hidden"
+							className="w-full max-w-[700px]  h-full md:h-fit md:max-h-[90%]  flex flex-col  bg-cardBackground sm:rounded-3xl overflow-y-scroll md:overflow-auto"
 						>
 							<motion.div
 								layoutId={`image-${active.title}-${id}`}
@@ -170,7 +170,7 @@ export function ShopingList({ works }: { works: any }) {
 									alt={active.title}
 									className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-contain object-center bg-myBackground"
 								/>
-								<div className="absolute top-0 right-0 mt-4 mr-4">
+								<div className="absolute top-0 right-0 mt-4 mr-4 z-[200]">
 									<button
 										onClick={() => setActive(null)}
 										className="hover:opacity-70 border border-first-muted rounded-full p-px bg-cardBackground"
@@ -207,13 +207,13 @@ export function ShopingList({ works }: { works: any }) {
 										Edytuj
 									</motion.a>
 								</div>
-								<div className="pt-4 relative px-4 flex-1">
+								<div className="pt-4 relative px-4 flex-1 ">
 									<motion.div
 										layout
 										initial={{ opacity: 0 }}
 										animate={{ opacity: 1 }}
 										exit={{ opacity: 0 }}
-										className="text-myText text-xs md:text-sm lg:text-base h-fit md:max-h-72 pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+										className="text-myText text-xs md:text-sm lg:text-base h-fit md:max-h-72 mb-20 flex flex-col items-start gap-4 overflow-y-scroll"
 									>
 										{typeof active.content === "function"
 											? active.content()

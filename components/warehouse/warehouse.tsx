@@ -90,13 +90,13 @@ export default function Warehouse({
 		}
 	};
 	return (
-		<div className="flex-1 flex flex-col bg-myBackground">
-			<div className="flex justify-start md:mx-auto md:w-3/4 py-8 px-6 md:px-0 ">
+		<div className="flex-1 flex flex-col bg-myBackground px-6">
+			<div className="flex justify-start md:mx-auto md:w-3/4 pt-6 mb-6 px-0 md:px-0 ">
 				<h1 className="text-4xl font-extrabold">Magazyn</h1>
 			</div>
-			<div className="grid grid-cols-1 bg-cardBackground/0 relative z-10 flex-1 md:flex-none  mx-auto w-full md:w-3/4 pt-2 md:pt-6 px-4 md:px-4">
-				<div className="w-full h-full bg-cardBackground/90 -z-10 absolute md:rounded-lg top-0 left-0"></div>
-				<div className="glassPattern3 w-full h-full rotate-180 absolute md:rounded-lg top-0 left-0"></div>
+			<div className="flex flex-col bg-cardBackground/0 relative z-10 flex-1 mx-auto w-full md:w-3/4 md:pt-6 mb-6 px-4 md:px-4 rounded-lg">
+				<div className="w-full h-full bg-cardBackground/90 -z-10 absolute rounded-lg top-0 left-0"></div>
+				<div className="glassPattern3 w-full h-full rotate-180 absolute rounded-lg top-0 left-0"></div>
 				<NewMaterialModal
 					visible={productModalVisible}
 					setVisible={setProductModalVisible}
@@ -109,9 +109,9 @@ export default function Warehouse({
 				>
 					<UpgradeMembership authenticatedUser={authenticatedUser} />
 				</Modal>
-				<div className="flex items-center md:py-4">
+				<div className="flex items-center py-4">
 					<Input
-						placeholder="Szukaj materiału..."
+						placeholder="Szukaj..."
 						value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
 						onChange={(event) =>
 							table.getColumn("name")?.setFilterValue(event.target.value)
@@ -179,7 +179,7 @@ export default function Warehouse({
 						</TableBody>
 					</Table>
 				</div>
-				<div className="flex items-center justify-end space-x-2 py-4">
+				<div className="flex items-center justify-end  space-x-2 py-4">
 					<div className="flex-1 text-sm text-myText-muted">
 						{table.getFilteredSelectedRowModel().rows.length} z{" "}
 						{table.getFilteredRowModel().rows.length} wierszy zaznaczone.

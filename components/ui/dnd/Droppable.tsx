@@ -14,9 +14,10 @@ interface Employee {
 }
 interface EmployeeItemProps {
 	employee: Employee;
+	user: any;
 }
 
-const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee }) => {
+const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee,user }) => {
 	const {
 		attributes,
 		listeners,
@@ -24,7 +25,7 @@ const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee }) => {
 		transform,
 		transition,
 		isDragging,
-	} = useSortable({ id: employee.id });
+	} = useSortable({ id: employee.id, disabled: user.role === "STAFF" && employee.id === user.employerId });
 
 	const style = {
 		transform: CSS.Transform.toString(transform),
@@ -57,9 +58,10 @@ const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee }) => {
 interface DropboxProps {
 	id: string;
 	employees: Employee[];
+	user: any;
 }
 
-const Dropbox: React.FC<DropboxProps> = ({ id, employees }) => {
+const Dropbox: React.FC<DropboxProps> = ({ id, employees, user }) => {
 	const { setNodeRef, isOver } = useDroppable({ id });
 
 	return (
@@ -74,7 +76,7 @@ const Dropbox: React.FC<DropboxProps> = ({ id, employees }) => {
 			</h2>
 			<SortableContext items={employees} strategy={verticalListSortingStrategy}>
 				{employees.map((employee) => (
-					<EmployeeItem key={employee.id} employee={employee} />
+					<EmployeeItem key={employee.id} employee={employee} user={user}  />
 				))}
 			</SortableContext>
 		</div>

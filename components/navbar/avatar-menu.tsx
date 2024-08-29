@@ -21,7 +21,7 @@ interface AvatarProps {
 const AvatarMenu: React.FC<AvatarProps> = () => {
 	const pathname = usePathname();
 	return (
-		<div className="absolute top-4 right-4 z-[200] md:hidden">
+		<div className="absolute top-4 right-4 z-[49] md:hidden">
 			<DropdownMenu>
 				<DropdownMenuTrigger className="focus:outline-none relative">
 					<Settings size={32} className="text-first-muted" />

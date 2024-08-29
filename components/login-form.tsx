@@ -24,6 +24,7 @@ export default function LoginForm({ setAuthModalVisible }: any) {
 				});
 			} else if (succes.success === "SUCCESS") {
 				toast({
+					variant: "success",
 					title: "Pomyślnie zalogowano!",
 					description: "Zostałeś przekierowany do ekranu głównego!",
 				});

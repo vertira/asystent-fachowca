@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Link, { LinkProps } from "next/link";
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import NavbarMobile from "./navbar-mobile";
@@ -50,7 +50,6 @@ const SidebarProvider = ({
 
 	const open = openProp !== undefined ? openProp : openState;
 	const setOpen = setOpenProp !== undefined ? setOpenProp : setOpenState;
-
 	return (
 		<SidebarContext.Provider value={{ open, setOpen, animate: animate }}>
 			{children}
@@ -106,6 +105,7 @@ const DesktopSidebar = ({
 					"h-screen py-4 hidden md:flex md:flex-col w-[200px] flex-shrink-0 border-r borderColor",
 					className
 				)}
+				initial={false}
 				animate={{
 					width: animate ? (open ? "250px" : "60px") : "250px",
 					borderRadius: animate ? (open ? "0" : "0 16px 16px 0px") : "16px",
@@ -174,6 +174,7 @@ export const SidebarLink = ({
 							: "inline-block",
 						opacity: animate ? (open ? 1 : 0) : 1,
 					}}
+					initial={false}
 					className="text-base group-hover/sidebar:translate-x-1 group-hover/sidebar:text-myText group-hover/sidebar:font-extrabold transition duration-150 whitespace-pre inline-block !p-0 !m-0"
 				>
 					{link.label}
