@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 	description: APP_DESCRIPTION,
 	appleWebApp: {
 		capable: true,
-		statusBarStyle: "black-translucent", // Zmienione na black-translucent
+		statusBarStyle: "black", 
 		title: APP_DEFAULT_TITLE,
 	},
 	formatDetection: {
@@ -69,6 +69,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
 	themeColor: "#000000",
+	colorScheme: "only light",
 	initialScale: 1,
 	maximumScale: 1,
 	userScalable: false,
@@ -85,11 +86,11 @@ const RootLayout = async ({
 			<head />
 			<body
 				className={cn(
-					`${telegram.className} min-h-screen h-full flex flex-col text-myText bg-myBackground`,
+					`${telegram.className} min-h-screen h-full flex flex-col text-myText bg-myBackground `,
 					{
 						"flex-col": authenticatedUser,
 					},
-					"pt-safe" // Dodane dla obsługi bezpiecznego obszaru na iOS
+					"pt-safe" 
 				)}
 				// style={{
 				// 	paddingTop: "env(safe-area-inset-top)", // Dodane dla obsługi notcha na iOS
