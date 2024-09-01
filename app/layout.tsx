@@ -68,11 +68,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-	colorScheme: "light",
-	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: "#000000" },
-		{ media: '(prefers-color-scheme: dark)', color: "#000000" },
-	  ],
+	themeColor: "#000000",
 	initialScale: 1,
 	maximumScale: 1,
 	userScalable: false,
@@ -95,9 +91,9 @@ const RootLayout = async ({
 					},
 					"pt-safe" // Dodane dla obsługi bezpiecznego obszaru na iOS
 				)}
-				style={{
-					paddingTop: "env(safe-area-inset-top)", // Dodane dla obsługi notcha na iOS
-				}}
+				// style={{
+				// 	paddingTop: "env(safe-area-inset-top)", // Dodane dla obsługi notcha na iOS
+				// }}
 			>
 				<AuthWrapper>{children}</AuthWrapper>
 				<Toaster />
