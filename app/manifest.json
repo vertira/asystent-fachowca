@@ -32,7 +32,8 @@
 	"id": "/",
 	"display_override": [
 	  "window-controls-overlay",
-	  "standalone"
+	  "standalone",
+	  "fullscreen"
 	],
 	"dir": "auto",
 	"lang": "pl",
