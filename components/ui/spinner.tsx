@@ -1,20 +1,19 @@
-import Image from "next/image";
+import Image from "next/image"
 const Spinner = () => {
-  return (
-    <div className="flex justify-center items-center flex-1 w-full">
-      <div
-        className="animate-spin rounded-full 
-        h-32 w-32 border-t-2 border-b-2
-        border-[#ff7400]
-        
-        "
-      ></div>
-      <div className="absolute flex flex-col justify-center items-center">
-        <Image src="/logo/small-logo.png" width={50} height={50} alt="logo" />
-        <span className="text-myText-muted text-sm">Ładuję...</span>
-      </div>
-    </div>
-  );
-};
+    return (
+        <div className="flex w-full flex-1 items-center justify-center">
+            <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-[#ff7400]"></div>
+            <div className="absolute flex flex-col items-center justify-center">
+                <Image
+                    src="/logo/small-logo.png"
+                    width={50}
+                    height={50}
+                    alt="logo"
+                />
+                <span className="text-sm text-myText-muted">Ładuję...</span>
+            </div>
+        </div>
+    )
+}
 
-export default Spinner;
+export default Spinner

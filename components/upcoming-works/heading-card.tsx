@@ -1,21 +1,21 @@
-import React from "react";
+import React from "react"
 interface HeadingText {
-  text: string;
+    text: string
 }
 function HeadingHomepage({ text }: HeadingText) {
-  return (
-    <div className=" w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
-      <h1 className="md:text-4xl text-3xl lg:text-4xl font-extrabold text-center text-first-muted tracking-tight relative z-20">
-        {text}
-      </h1>
-      <div className="w-full h-2 relative flex justify-center">
-        <div className="absolute mx-auto top-0 bg-gradient-to-r from-transparent via-orange-600 to-transparent h-[2px] w-1/4 blur-sm" />
-        <div className="absolute mx-auto top-0 bg-gradient-to-r from-transparent via-orange-500 to-transparent h-px w-1/2" />
-        <div className="absolute mx-auto top-0 bg-gradient-to-r from-transparent via-orange-600 to-transparent h-[2px] w-1/2 blur-sm" />
-        <div className="absolute mx-auto top-0 bg-gradient-to-r from-transparent via-orange-600 to-transparent h-px w-1/2" />
-      </div>
-    </div>
-  );
+    return (
+        <div className="flex w-full flex-col items-center justify-center overflow-hidden rounded-md">
+            <h1 className="relative z-20 text-center text-3xl font-extrabold tracking-tight text-first-muted md:text-4xl lg:text-4xl">
+                {text}
+            </h1>
+            <div className="relative flex h-2 w-full justify-center">
+                <div className="absolute top-0 mx-auto h-[2px] w-1/4 bg-gradient-to-r from-transparent via-orange-600 to-transparent blur-sm" />
+                <div className="absolute top-0 mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
+                <div className="absolute top-0 mx-auto h-[2px] w-1/2 bg-gradient-to-r from-transparent via-orange-600 to-transparent blur-sm" />
+                <div className="absolute top-0 mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-orange-600 to-transparent" />
+            </div>
+        </div>
+    )
 }
 
-export default HeadingHomepage;
+export default HeadingHomepage

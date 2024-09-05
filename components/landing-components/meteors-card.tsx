@@ -1,13 +1,13 @@
-import { FeaturesCard } from "./features-card";
+import { FeaturesCard } from "./features-card"
 
 export function Meteorss() {
-  return (
-    <div className="w-full">
-      <div className="relative w-full">
-        <div className="relative flex mx-auto h-full w-full xl:w-1/2 flex-col items-center justify-center overflow-hidden xl:px-4 py-8 ">
-          <FeaturesCard />
+    return (
+        <div className="w-full">
+            <div className="relative w-full">
+                <div className="relative mx-auto flex h-full w-full flex-col items-center justify-center overflow-hidden py-8 xl:w-1/2 xl:px-4">
+                    <FeaturesCard />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    )
 }

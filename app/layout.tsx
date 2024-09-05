@@ -96,7 +96,7 @@ const RootLayout = async ({
             {
               "flex-col": authenticatedUser,
             },
-            "pt-safe"
+            "pt-safe",
           )}
         >
           <AuthWrapper>{children}</AuthWrapper>
