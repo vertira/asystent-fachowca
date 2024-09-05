@@ -27,16 +27,16 @@ let notifications = [
     color: "#FFB800",
   },
   {
-    name: "Szybka wycena",
-    description: "Korzystaj z kalkulatora wycen",
-    time: "5m ago",
+    name: "Oszczędność",
+    description: "Optymalne zarządzanie materiałami",
+    time: "5m temu",
     icon: "💸",
     color: "#FF3D71",
   },
   {
     name: "Uwiecznij prace",
     description: "Zapisuj zdjęcia swoich projektów",
-    time: "2m ago",
+    time: "2m temu",
     icon: "📷",
     color: "#1E86FF",
   },
@@ -52,7 +52,7 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
         // animation styles
         "transition-all duration-200 ease-in-out hover:scale-[103%]",
         // dark styles
-        "transform-gpu bg-cardBackground/30 dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-50px_#ff7400_inset]",
+        "transform-gpu bg-cardBackground/30 dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-50px_#ff7400_inset]"
       )}
     >
       <div className="flex flex-row items-center gap-3">
