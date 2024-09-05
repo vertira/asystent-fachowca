@@ -1,33 +1,30 @@
-
 import Image from "next/image";
 import Link from "next/link";
 
 const Logo = () => {
-    return ( 
+  return (
     <div>
-     <Link href={"/"} className="md:hidden">
-        <Image 
-        src={'/logo/small-logo.png'} 
-        alt="logo"
-        width={50}
-        height={50}
-        className="p-1"
+      <Link href={"/"} className="md:hidden">
+        <Image
+          src={"/logo/small-logo.png"}
+          alt="logo"
+          width={50}
+          height={50}
+          className="p-1"
         />
-     </Link>
+      </Link>
 
-     <Link href={"/"} className="hidden md:block">
-        <Image 
-        src={'/logo/logo.png'} 
-        alt="logo"
-        width={100}
-        height={100}
-        className="h-full w-full"
+      <Link href={"/"} className="hidden md:block">
+        <Image
+          src={"/logo/logo.png"}
+          alt="logo"
+          width={100}
+          height={100}
+          className="h-full w-full"
         />
-     </Link>
+      </Link>
+    </div>
+  );
+};
 
-
-
-    </div> );
-}
- 
 export default Logo;

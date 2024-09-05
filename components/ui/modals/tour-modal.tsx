@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { X } from "lucide-react";
+import { useLoginForm } from "@/context/LoginFormContext";
 
 interface ModalProps {
   visible: boolean;
@@ -8,10 +9,29 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
+const TourModal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
+  const { setIsTourActive } = useLoginForm();
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [visible]);
   return (
     <Transition show={visible} as={Fragment}>
-      <Dialog onClose={() => setVisible(false)} static={true} open={visible}>
+      <Dialog
+        onClose={() => {
+          setVisible(false);
+          setIsTourActive(false);
+        }}
+        static={true}
+        open={visible}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-200"
@@ -33,13 +53,16 @@ const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
           leaveFrom="opacity-100 scale-100 "
           leaveTo="opacity-0 scale-95 0"
         >
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <Dialog.Panel className="relative h-full xl:h-[90vh] w-full mt-auto sm:mt-0 md:w-4/5 xl:w-1/2  flex  rounded-sm shadow-md">
-              <div className="w-full h-full bg-cardBackground/95 -z-10 absolute md:rounded-lg top-0 left-0"></div>
-              <div className="glassPattern3 w-full h-full rotate-180 absolute md:rounded-lg top-0 left-0"></div>
+          <div className="fixed inset-0 h-full z-50 flex items-center justify-center">
+            <Dialog.Panel className="relative h-full xl:h-[90vh] max-md:overflow-y-scroll w-full mt-auto sm:mt-0 md:w-4/5 xl:w-1/2  flex  rounded-sm shadow-md">
+              <div className="w-full h-full flex-1 bg-cardBackground/95 -z-10 md:absolute fixed md:rounded-lg top-0 left-0"></div>
+              <div className="glassPattern3 w-full h-full rotate-180 md:absolute fixed md:rounded-lg top-0 left-0"></div>
               <div className="absolute top-0 right-0 mt-4 mr-4">
                 <button
-                  onClick={() => setVisible(false)}
+                  onClick={() => {
+                    setVisible(false);
+                    setIsTourActive(false);
+                  }}
                   className="hover:opacity-70 focus:outline-none "
                 >
                   <X className="w-8 h-8" aria-hidden="true" />
@@ -57,4 +80,4 @@ const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
   );
 };
 
-export default Modal;
+export default TourModal;

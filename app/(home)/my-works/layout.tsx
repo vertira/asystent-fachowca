@@ -3,28 +3,28 @@ import { getUserPermissions } from "@/lib/server-actions";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 export const metadata: Metadata = {
-	title: "Edycja prac | Asystent Fachowca",
-	description: "Asystent Fachowca",
-	icons: {
-		icon: "/icon.ico",
-	},
+  title: "Edycja prac | Asystent Fachowca",
+  description: "Asystent Fachowca",
+  icons: {
+    icon: "/icon.ico",
+  },
 };
 const MyWorksLayout = async ({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) => {
-	const authenticatedUser = await auth();
-	const userPermissions = await getUserPermissions();
-	if (!authenticatedUser) {
-		redirect("/");
-	}
-	if (authenticatedUser.user.role === "STAFF") {
-		if (!userPermissions.permissions.editWork) {
-			redirect("/");
-		}
-	}
-	return <>{children}</>;
+  const authenticatedUser = await auth();
+  const userPermissions = await getUserPermissions();
+  if (!authenticatedUser) {
+    redirect("/");
+  }
+  if (authenticatedUser.user.role === "STAFF") {
+    if (!userPermissions.permissions.editWork) {
+      redirect("/");
+    }
+  }
+  return <>{children}</>;
 };
 
 export default MyWorksLayout;

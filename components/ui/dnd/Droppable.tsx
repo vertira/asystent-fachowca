@@ -1,86 +1,89 @@
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import {
-	SortableContext,
-	useSortable,
-	verticalListSortingStrategy,
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 interface Employee {
-	id: string;
-	name: string;
-	avatar: string;
+  id: string;
+  name: string;
+  avatar: string;
 }
 interface EmployeeItemProps {
-	employee: Employee;
-	user: any;
+  employee: Employee;
+  user: any;
 }
 
-const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee,user }) => {
-	const {
-		attributes,
-		listeners,
-		setNodeRef,
-		transform,
-		transition,
-		isDragging,
-	} = useSortable({ id: employee.id, disabled: user.role === "STAFF" && employee.id === user.employerId });
+const EmployeeItem: React.FC<EmployeeItemProps> = ({ employee, user }) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: employee.id,
+    disabled: user.role === "STAFF" && employee.id === user.employerId,
+  });
 
-	const style = {
-		transform: CSS.Transform.toString(transform),
-		transition,
-		opacity: isDragging ? 0.5 : 1,
-		zIndex: isDragging ? 1000 : 1,
-		touchAction: "none",
-	};
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    zIndex: isDragging ? 1000 : 1,
+    touchAction: "none",
+  };
 
-	return (
-		<div
-			ref={setNodeRef}
-			style={style}
-			{...attributes}
-			{...listeners}
-			className="mb-2 p-2 bg-green-500/80 rounded shadow cursor-grab"
-		>
-			<Image
-				width={40}
-				height={40}
-				src={employee.avatar}
-				alt={employee.name}
-				className="w-10 h-10 rounded-full inline-block mr-2"
-			/>
-			<span className="font-extrabold">{employee.name}</span>
-		</div>
-	);
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="mb-2 p-2 bg-green-500/80 rounded shadow cursor-grab"
+    >
+      <Image
+        width={40}
+        height={40}
+        src={employee.avatar}
+        alt={employee.name}
+        className="w-10 h-10 rounded-full inline-block mr-2"
+      />
+      <span className="font-extrabold">{employee.name}</span>
+    </div>
+  );
 };
 
 interface DropboxProps {
-	id: string;
-	employees: Employee[];
-	user: any;
+  id: string;
+  employees: Employee[];
+  user: any;
 }
 
 const Dropbox: React.FC<DropboxProps> = ({ id, employees, user }) => {
-	const { setNodeRef, isOver } = useDroppable({ id });
+  const { setNodeRef, isOver } = useDroppable({ id });
 
-	return (
-		<div
-			ref={setNodeRef}
-			className={`w-full lg:w-1/2 bg-cardBackground p-4 rounded min-h-[200px] mx-auto ${
-				isOver ? "border-2 border-green-500/80" : ""
-			}`}
-		>
-			<h2 className="text-xl font-bold mb-4 w-fit pointer-events-none select-none">
-				Przypisani pracownicy:
-			</h2>
-			<SortableContext items={employees} strategy={verticalListSortingStrategy}>
-				{employees.map((employee) => (
-					<EmployeeItem key={employee.id} employee={employee} user={user}  />
-				))}
-			</SortableContext>
-		</div>
-	);
+  return (
+    <div
+      ref={setNodeRef}
+      className={`w-full lg:w-1/2 bg-cardBackground p-4 rounded min-h-[200px] mx-auto ${
+        isOver ? "border-2 border-green-500/80" : ""
+      }`}
+    >
+      <h2 className="text-xl font-bold mb-4 w-fit pointer-events-none select-none">
+        Przypisani pracownicy:
+      </h2>
+      <SortableContext items={employees} strategy={verticalListSortingStrategy}>
+        {employees.map((employee) => (
+          <EmployeeItem key={employee.id} employee={employee} user={user} />
+        ))}
+      </SortableContext>
+    </div>
+  );
 };
 
 export default Dropbox;

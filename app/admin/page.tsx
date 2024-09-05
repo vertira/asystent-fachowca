@@ -3,11 +3,11 @@ import Link from "next/link";
 import { PiBell, PiGear } from "react-icons/pi";
 
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { auth } from "@/auth";
@@ -16,129 +16,129 @@ import OverviewChart from "@/components/overview-chart";
 import RecentActivity from "@/components/recent-activity";
 
 const Admin = async () => {
-	const users = await getUsers();
-	const authenticatedUser = await auth();
-	const activeProducts = await getActiveWorks();
-	const data = await getAdminData();
+  const users = await getUsers();
+  const authenticatedUser = await auth();
+  const activeProducts = await getActiveWorks();
+  const data = await getAdminData();
 
-	const premiumUsers = users.filter((user) => user.isPremium);
+  const premiumUsers = users.filter((user) => user.isPremium);
 
-	return (
-		<div className="px-8 md:px-20">
-			<div>
-				<div className="flex justify-between items-center">
-					<div className="flex gap-x-6 items-center py-10">
-						<Link href={"/"}>
-							<Image
-								src={"/logo/small-logo.png"}
-								alt="logo"
-								width={300}
-								height={300}
-								className="w-20 h-20 md:w-20
+  return (
+    <div className="px-8 md:px-20">
+      <div>
+        <div className="flex justify-between items-center">
+          <div className="flex gap-x-6 items-center py-10">
+            <Link href={"/"}>
+              <Image
+                src={"/logo/small-logo.png"}
+                alt="logo"
+                width={300}
+                height={300}
+                className="w-20 h-20 md:w-20
                          md:h-20 border rounded-md cursor-pointer"
-							/>
-						</Link>
+              />
+            </Link>
 
-						<div className="hidden md:block">
-							<h1 className="text-3xl font-bold">Welcome back admin</h1>
-							<p className="text-gray-500">
-								Here is what&apos;s happening in your business today
-							</p>
-						</div>
-					</div>
-					<div className="flex items-center gap-4">
-						<PiBell className="text-2xl text-gray-500" />
-						<PiGear className="text-2xl text-gray-500" />
-					</div>
-				</div>
+            <div className="hidden md:block">
+              <h1 className="text-3xl font-bold">Welcome back admin</h1>
+              <p className="text-gray-500">
+                Here is what&apos;s happening in your business today
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <PiBell className="text-2xl text-gray-500" />
+            <PiGear className="text-2xl text-gray-500" />
+          </div>
+        </div>
 
-				<div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-					<Card>
-						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-							<CardTitle className="text-md font-bold">Users</CardTitle>👤
-						</CardHeader>
-						<CardContent>{users.length}</CardContent>
-					</Card>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-md font-bold">Users</CardTitle>👤
+            </CardHeader>
+            <CardContent>{users.length}</CardContent>
+          </Card>
 
-					<Card>
-						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-							<CardTitle className="text-md font-bold">Premium Users</CardTitle>{" "}
-							💰
-						</CardHeader>
-						<CardContent>{premiumUsers.length}</CardContent>
-					</Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-md font-bold">Premium Users</CardTitle>{" "}
+              💰
+            </CardHeader>
+            <CardContent>{premiumUsers.length}</CardContent>
+          </Card>
 
-					<Card>
-						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-							<CardTitle className="text-md font-bold">
-								Active Products
-							</CardTitle>{" "}
-							📦
-						</CardHeader>
-						<CardContent>{activeProducts?.length}</CardContent>
-					</Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-md font-bold">
+                Active Products
+              </CardTitle>{" "}
+              📦
+            </CardHeader>
+            <CardContent>{activeProducts?.length}</CardContent>
+          </Card>
 
-					<Card>
-						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-							<CardTitle className="text-md font-bold">
-								Pending Products
-							</CardTitle>{" "}
-							🕒
-						</CardHeader>
-						<CardContent>Nic</CardContent>
-					</Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-md font-bold">
+                Pending Products
+              </CardTitle>{" "}
+              🕒
+            </CardHeader>
+            <CardContent>Nic</CardContent>
+          </Card>
 
-					<Card>
-						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-							<CardTitle className="text-md font-bold">
-								Rejected Products
-							</CardTitle>
-							👤
-						</CardHeader>
-						<CardContent>Nic</CardContent>
-					</Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-md font-bold">
+                Rejected Products
+              </CardTitle>
+              👤
+            </CardHeader>
+            <CardContent>Nic</CardContent>
+          </Card>
 
-					<Card>
-						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-							<CardTitle className="text-md font-bold">Upvotes</CardTitle> 🔺
-						</CardHeader>
-						<CardContent>Nic</CardContent>
-					</Card>
-				</div>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-md font-bold">Upvotes</CardTitle> 🔺
+            </CardHeader>
+            <CardContent>Nic</CardContent>
+          </Card>
+        </div>
 
-				<div className="grid md:grid-cols-2 lg:grid-cols-7 my-4 gap-4">
-					<Card className="col-span-4">
-						<CardHeader>
-							<CardTitle className="pb-10">Overview</CardTitle>
-						</CardHeader>
-						<CardContent className="pl-2">
-							<OverviewChart data={data} />
-						</CardContent>
-					</Card>
+        <div className="grid md:grid-cols-2 lg:grid-cols-7 my-4 gap-4">
+          <Card className="col-span-4">
+            <CardHeader>
+              <CardTitle className="pb-10">Overview</CardTitle>
+            </CardHeader>
+            <CardContent className="pl-2">
+              <OverviewChart data={data} />
+            </CardContent>
+          </Card>
 
-					<Card className="w-full col-span-4 md:col-span-3">
-						<CardHeader>
-							<CardTitle>Recent Activity</CardTitle>
-							<CardDescription>View recent activity</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<RecentActivity users={users} />
-						</CardContent>
-					</Card>
-				</div>
+          <Card className="w-full col-span-4 md:col-span-3">
+            <CardHeader>
+              <CardTitle>Recent Activity</CardTitle>
+              <CardDescription>View recent activity</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <RecentActivity users={users} />
+            </CardContent>
+          </Card>
+        </div>
 
-				<Separator className="my-10" />
+        <Separator className="my-10" />
 
-				<div className="pb-10 space-y-10">
-					<h1 className="text-2xl font-bold">Pending Products</h1>
-					{/* <PendingProducts
+        <div className="pb-10 space-y-10">
+          <h1 className="text-2xl font-bold">Pending Products</h1>
+          {/* <PendingProducts
             pendingProducts={pendingProducts}
             authenticatedUser={authenticatedUser}
           /> */}
-				</div>
-			</div>
-		</div>
-	);
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Admin;

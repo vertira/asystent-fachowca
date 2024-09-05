@@ -1,7 +1,8 @@
-const SignUpButton = ({handleButtonRegister}:any) => {
-	return (
-		<button onClick={handleButtonRegister}
-			className="
+const SignUpButton = ({ handleButtonRegister }: any) => {
+  return (
+    <button
+      onClick={handleButtonRegister}
+      className="
     bg-gradient-to-b from-blue-500 to-blue-400
     text-white
     text-center
@@ -10,10 +11,10 @@ const SignUpButton = ({handleButtonRegister}:any) => {
      hover:scale-105
       
       "
-		>
-			Rejestracja
-		</button>
-	);
+    >
+      Rejestracja
+    </button>
+  );
 };
 
 export default SignUpButton;
