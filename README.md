@@ -3,7 +3,7 @@
 <img src="https://utfs.io/f/375a974f-7bee-43bb-9c82-a9209ca44a34-pvpaoa.png" width="600"/>
 </div>
 
-Professional Assistant is an mobile application that supports professionals in their daily work, offering quick access to essential tools and information.
+Asystent fachowca is an application that supports professionals in their daily work, offering quick access to essential tools and information.
 
 
 ## Access the demo version:
